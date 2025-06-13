@@ -1,6 +1,6 @@
 # Retrieval-Augmented Generation (RAG)
 
-A simple retrieval-augmented-generation (RAG) pipeline that answers JavaScript questions over your own `.txt` documents, using LangChain’s in-memory vector store and a locally-hosted Ollama LLM.
+A simple RAG pipeline that answers JavaScript questions over your own `.txt` documents, using LangChain’s in-memory vector store and a locally-hosted Ollama LLM.
 
 ---
 
