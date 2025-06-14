@@ -47,17 +47,15 @@ async function answerQuestionStream(question) {
 
         Instructions:
         - Answer in max 3 sentences.
-        - If context doesn't cover it, reply “Insufficient information in the context.”
     `;
 
     return model.stream(prompt);
 }
 
-
 const questions = [
     "Is JavaScript an object-oriented programming language?",
     "Is JavaScript an interpreted language?",
-    "Are Node.js and JavaScript the same?"
+    "Are Node.js and JavaScript the same?",
 ];
 
 for (const q of questions) {
@@ -68,8 +66,7 @@ for (const q of questions) {
         const stream = await answerQuestionStream(q);
 
         for await (const chunk of stream) {
-            const token = typeof chunk === "string" ? chunk : chunk.content;
-            process.stdout.write(token);
+            process.stdout.write(chunk.content);
         }
 
         console.log(); // newline after answer
@@ -77,4 +74,3 @@ for (const q of questions) {
         console.log("\n⚠️", err.message);
     }
 }
-
