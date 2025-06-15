@@ -29,7 +29,7 @@ const vectorStore = await MemoryVectorStore.fromDocuments(
     embeddings
 );
 
-async function answerQuestionStream(question) {
+async function answerQuestion(question) {
     const hits = await vectorStore.similaritySearch(question, 2);
     if (hits.length === 0) {
         throw new Error("Insufficient context to answer.");
@@ -58,12 +58,12 @@ const questions = [
     "Are Node.js and JavaScript the same?",
 ];
 
-for (const q of questions) {
-    console.log(`\n❓ ${q}`);
+for (const question of questions) {
+    console.log(`\n❓ ${question}`);
     process.stdout.write("💡 Answer: ");
 
     try {
-        const stream = await answerQuestionStream(q);
+        const stream = await answerQuestion(question);
 
         for await (const chunk of stream) {
             process.stdout.write(chunk.content);
